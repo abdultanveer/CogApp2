@@ -12,6 +12,9 @@
         <activity
             android:name=".CalendarActivity"
             android:exported="true" >
+<!--
+            this intent filter will serve the intents with the action string abdul.needs.water
+-->
             <intent-filter>
                 <action android:name="abdul.needs.water"/>
                 <category android:name="android.intent.category.DEFAULT"/>
