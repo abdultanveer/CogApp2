@@ -10,14 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CogApp2">
         <activity
+            android:name=".NavDrawerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.CogApp2.NoActionBar">
+
+        </activity>
+        <activity
             android:name=".CalendarActivity"
-            android:exported="true" >
-<!--
-            this intent filter will serve the intents with the action string abdul.needs.water
--->
+            android:exported="true">
+
+            <!--             this intent filter will serve the intents with the action string abdul.needs.water -->
             <intent-filter>
-                <action android:name="abdul.needs.water"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="abdul.needs.water" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
