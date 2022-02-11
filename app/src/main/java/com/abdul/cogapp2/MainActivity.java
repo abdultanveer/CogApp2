@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
     @Override
@@ -18,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView mainTv =  findViewById(R.id.tvMenu); //taking handle on the textview
-
+        ListView cListView = findViewById(R.id.listview);
+        cListView.setOnItemClickListener(this);
         registerForContextMenu(mainTv);
 
     }
@@ -44,5 +47,12 @@ public class MainActivity extends AppCompatActivity {
          }
 
         return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        String item = adapterView.getItemAtPosition(position).toString();
+        Toast.makeText(this, item, Toast.LENGTH_SHORT).show();
+
     }
 }
