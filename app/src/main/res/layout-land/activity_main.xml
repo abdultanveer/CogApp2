@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:layout_marginBottom="1dp"
-        android:text="long click for menu - portrait"
+        android:text="long click for menu --- landscape"
         app:layout_constraintBottom_toTopOf="@+id/listview"
         app:layout_constraintStart_toStartOf="@+id/listview"
         app:layout_constraintTop_toTopOf="parent" />
