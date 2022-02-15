@@ -2,6 +2,7 @@ package com.abdul.cogapp2;
 
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -27,6 +28,7 @@ public class LoginActivityUiTest {
     @Test
     public void testSubmitButtonClick() {
         onView(withId(R.id.etEmail))
+                .perform(clearText())
                 .perform(typeText("abdul ansari"), closeSoftKeyboard());
         onView(withId(R.id.btnSubmit)).perform(click());
 
