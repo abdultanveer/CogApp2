@@ -18,7 +18,16 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> {
     @Override
     protected Void doInBackground(String... url) {
         Log.i(TAG,"downloading movie from the url--"+ url[0]);
-        publishProgress(75);
+        for (int i =1; i<100; i++) {
+            try {
+                Thread.sleep(300);
+                publishProgress(i);
+                i = i+5;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
         return null;
     }
 
