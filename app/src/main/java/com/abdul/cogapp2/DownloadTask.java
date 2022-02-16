@@ -2,6 +2,7 @@ package com.abdul.cogapp2;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 //input type is string -- url, progress type - Integer,
@@ -11,6 +12,12 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> {
     ProgressBar mProgressBar;
     public DownloadTask(ProgressBar progressBar) {
         mProgressBar = progressBar;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     //this method will execute on a seperate thread in the background
@@ -36,5 +43,11 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> {
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
         mProgressBar.setProgress(values[0]);
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        super.onPostExecute(unused);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 }
