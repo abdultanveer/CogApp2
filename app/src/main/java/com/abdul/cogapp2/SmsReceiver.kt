@@ -8,6 +8,7 @@ import android.widget.Toast
 import android.os.Bundle
 import android.telephony.SmsMessage
 import android.util.Log
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 
 class SmsReceiver : BroadcastReceiver() {
@@ -16,6 +17,7 @@ class SmsReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
         Toast.makeText(context,"sms from cognizant",Toast.LENGTH_SHORT).show()
+
        /* var manager : SmsManager = SmsManager.getDefault()
         manager.sendTextMessage("5556",null,"from 5554",null,null)*/
 
