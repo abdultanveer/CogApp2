@@ -14,5 +14,7 @@ public class AsyncActivity extends AppCompatActivity {
     }
 
     public void startDownload(View view) {
+        DownloadTask downloadTask = new DownloadTask();
+        downloadTask.execute("http://youtube.com/movie");
     }
 }
