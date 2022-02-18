@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CogApp2">
         <service
-            android:name=".MyService"
+            android:name=".AdditionService"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".AsyncActivity"
@@ -38,7 +42,7 @@
 
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".NavDrawerActivity"
             android:exported="true"

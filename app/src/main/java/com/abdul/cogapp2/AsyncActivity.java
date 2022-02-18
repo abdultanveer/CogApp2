@@ -8,9 +8,12 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -103,7 +106,29 @@ public class AsyncActivity extends AppCompatActivity {
             case R.id.btnStop:
                 stopService(sIntent);
                 break;
+            case R.id.btnBind:
+                Intent bIntent = new Intent(AsyncActivity.this, AdditionService.class);
+                bindService(bIntent,serviceConnection,BIND_AUTO_CREATE);//BIND_AUTO_CREATE -- if the service is not running then create one
+
+                break;
         }
 
     }
+    public AdditionService additionService;
+
+    //additionService = new AdditionService(); i am not creating the object of AdditionService instead im getting a running instance
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) { //  additionservice on bind method return this iBinder
+            AdditionService.LocalBinder localBinder = (AdditionService.LocalBinder) iBinder; //im not creating an instance but getting it
+            additionService = localBinder.getService();
+           int result = additionService.add(10,20);
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+//service runs on the main thread
 public class MyService extends Service {
     public static String TAG = MyService.class.getSimpleName();
     public MyService() {
