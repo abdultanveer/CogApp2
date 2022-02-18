@@ -109,7 +109,7 @@ public class AsyncActivity extends AppCompatActivity {
             case R.id.btnBind:
                 Intent bIntent = new Intent(AsyncActivity.this, AdditionService.class);
                 bindService(bIntent,serviceConnection,BIND_AUTO_CREATE);//BIND_AUTO_CREATE -- if the service is not running then create one
-
+               // unbindService(serviceConnection);
                 break;
         }
 

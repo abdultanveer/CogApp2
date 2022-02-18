@@ -2,6 +2,7 @@ package com.abdul.cogapp2;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -21,6 +22,9 @@ public class MyService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
          super.onStartCommand(intent, flags, startId);
         Log.i(TAG,"received request to---"+ intent.getExtras().getString("url"));
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.sample);
+        mediaPlayer.start();
 
         return START_STICKY;
     }
