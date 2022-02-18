@@ -33,7 +33,7 @@ public class AsyncActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(
+       /* FirebaseMessaging.getInstance().getToken().addOnCompleteListener(
                 new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
@@ -43,7 +43,7 @@ public class AsyncActivity extends AppCompatActivity {
 
                     }
                 }
-        );
+        );*/
 
     }
 
@@ -90,5 +90,20 @@ public class AsyncActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    public void serviceHandler(View view) {
+        Intent sIntent = new Intent(AsyncActivity.this, MyService.class);
+
+        switch (view.getId()){
+            case R.id.btnStart:
+                sIntent.putExtra("url","http:downloadurl.com");
+                startService(sIntent);
+                break;
+            case R.id.btnStop:
+                stopService(sIntent);
+                break;
+        }
+
     }
 }
