@@ -25,7 +25,7 @@ public class NetworkUtils {
     static String getBookInfo(String queryString) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        String bookJSONString = null;
+        String bookJSONString = "";
 
         Uri builtURI = Uri.parse(BOOK_BASE_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM, queryString)
@@ -80,7 +80,7 @@ completed buffer for debugging. */
                 }
             }
         }
-        Log.d(LOG_TAG, bookJSONString);
+        //Log.d(LOG_TAG, bookJSONString);
         return bookJSONString;
     }
 }
