@@ -9,7 +9,7 @@ public class Todo {
 
     @PrimaryKey(autoGenerate = true)
     public int tid;
-    
+
     public String title;
     public String notes;
 }
