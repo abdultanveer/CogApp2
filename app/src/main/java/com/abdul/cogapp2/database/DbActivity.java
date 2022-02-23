@@ -12,10 +12,12 @@ import com.abdul.cogapp2.R;
 public class DbActivity extends AppCompatActivity {
 EditText etTitle,etNotes;
 DbAccessObj dbAccessObj;
+TodoRoomDb todoRoomDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
+        todoRoomDb = TodoRoomDb.getDatabase(this);
 
         etTitle = findViewById(R.id.etTitle);
         etNotes = findViewById(R.id.etNotes);
