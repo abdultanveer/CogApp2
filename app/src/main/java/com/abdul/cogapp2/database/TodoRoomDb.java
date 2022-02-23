@@ -17,8 +17,6 @@ public abstract class TodoRoomDb extends RoomDatabase {
     static TodoRoomDb getDatabase(Context context){
         INSTANCE = Room.databaseBuilder(context, TodoRoomDb.class, "cognizant_db")
                 .build();
-
-
         return INSTANCE;
     }
 

@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.abdul.cogapp2.R;
 
+import org.w3c.dom.Text;
+
+import java.util.List;
+
 public class DbActivity extends AppCompatActivity {
 EditText etTitle,etNotes;
 DbAccessObj dbAccessObj;
@@ -38,14 +42,23 @@ TodoDao todoDao;
                 etNotes.setText("");*/
                 break;
             case R.id.btnRetrevie:
-                TextView dbTextView = findViewById(R.id.tvDb);
-                dbTextView.setText(dbAccessObj.readRow());
+                /*TextView dbTextView = findViewById(R.id.tvDb);
+                dbTextView.setText(dbAccessObj.readRow());*/
+                searchTodo(etTitle.getText().toString());
                 break;
         }
     }
 
+    private void searchTodo(String searchString) {
+        TextView dbTextView = findViewById(R.id.tvDb);
+
+        new SearchTask(searchString,dbTextView).execute();
+    }
+
     private void insertAsync(String title, String notes) {
         new InsertTask(title,notes).execute();
+        etTitle.setText("");
+        etNotes.setText("");
     }
 
 
@@ -62,9 +75,29 @@ TodoDao todoDao;
         @Override
         protected Void doInBackground(Void... voids) {
             todoDao.insert(new Todo(mTitle,mNotes));
+
             return null;
         }
     }
 
+    class SearchTask extends AsyncTask<Void,Void, List<Todo>> {
+        String mString;
+        TextView mTextView;
+        public SearchTask(String searchString, TextView dbTextView) {
+            mString = searchString;
+            mTextView = dbTextView;
+        }
 
+        @Override
+        protected List<Todo> doInBackground(Void... voids) {
+            return todoDao.findWord(mString);
+
+        }
+
+        @Override
+        protected void onPostExecute(List<Todo> todos) {
+            super.onPostExecute(todos);
+            mTextView.setText(todos.get(0).title + "\n"+ todos.get(0).notes);
+        }
+    }
 }

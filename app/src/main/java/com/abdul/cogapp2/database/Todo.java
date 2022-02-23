@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Todo {
 
+    public Todo(){}
+
     @PrimaryKey(autoGenerate = true)
     public int tid;
 

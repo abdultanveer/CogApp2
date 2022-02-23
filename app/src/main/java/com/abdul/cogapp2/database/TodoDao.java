@@ -5,11 +5,16 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+
 @Dao
 public interface TodoDao {
 
    @Insert
    void insert(Todo todo);
+
+   @Query("SELECT * FROM Todo WHERE title LIKE :searchString ")
+   public List<Todo> findWord(String searchString);
 
   /* @Update
    public void updateWords(Word... words);*/
@@ -20,7 +25,6 @@ public interface TodoDao {
    @Query("SELECT * from word_table ORDER BY word ASC")
    List<Word> getAllWords();
 
-   @Query("SELECT * FROM word_table WHERE word LIKE :word ")
-   public List<Word> findWord(String word);*/
+   */
 
 } 
