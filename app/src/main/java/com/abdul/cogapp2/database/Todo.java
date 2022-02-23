@@ -12,4 +12,9 @@ public class Todo {
 
     public String title;
     public String notes;
+
+    public Todo(String mTitle, String mNotes) {
+        this.title = mTitle;
+        this.notes = mNotes;
+    }
 }
