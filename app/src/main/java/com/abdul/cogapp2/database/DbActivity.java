@@ -11,10 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.abdul.cogapp2.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
@@ -83,8 +87,26 @@ public  static String TAG = DbActivity.class.getSimpleName();
                 fireCommit();
                 break;
             case R.id.btnFireRetreive:
+                readFirestore();
                 break;
         }
+    }
+
+    private void readFirestore() {
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     private void fireCommit() {
