@@ -1,24 +1,34 @@
 package com.abdul.cogapp2.database;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.abdul.cogapp2.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DbActivity extends AppCompatActivity {
 EditText etTitle,etNotes;
 DbAccessObj dbAccessObj;
 TodoRoomDb todoRoomDb;
 TodoDao todoDao;
+public  static String TAG = DbActivity.class.getSimpleName();
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +39,12 @@ TodoDao todoDao;
         etNotes = findViewById(R.id.etNotes);
         dbAccessObj = new DbAccessObj(this);
         dbAccessObj.openDb();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+         db = FirebaseFirestore.getInstance();
     }
 
     public void dbHandler(View view) {
@@ -61,6 +77,38 @@ TodoDao todoDao;
         etNotes.setText("");
     }
 
+    public void firestoreHandler(View view) {
+        switch (view.getId()){
+            case R.id.btnFirecommit:
+                fireCommit();
+                break;
+            case R.id.btnFireRetreive:
+                break;
+        }
+    }
+
+    private void fireCommit() {
+        Map<String, Object> user = new HashMap<>();
+        user.put("first", "Ada");
+        user.put("last", "Lovelace");
+        user.put("born", 1815);
+
+// Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
 
 
     class InsertTask extends AsyncTask<Void,Void,Void>{

@@ -45,6 +45,7 @@ dependencies {
     //room db
     implementation 'androidx.room:room-common:2.4.1'
     implementation 'androidx.room:room-runtime:2.4.1'
+    implementation 'com.google.firebase:firebase-firestore:24.0.1'
     annotationProcessor 'androidx.room:room-compiler:2.4.1'
 
 
