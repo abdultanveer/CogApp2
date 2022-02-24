@@ -24,11 +24,11 @@ public class ContentProviderActivity extends AppCompatActivity {
 
         Cursor dataCursor = contentResolver.query(uriSms,null,null,null,null);
 
-        String[] fromColNames = new String[]{"body"};
-        int[] toTextviews = new int[]{android.R.id.text1};
+        String[] fromColNames = new String[]{"address","body"};
+        int[] toTextviews = new int[]{android.R.id.text1,android.R.id.text2};
 
         CursorAdapter adapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_1,
+                android.R.layout.simple_list_item_2,
                 dataCursor,
                 fromColNames,toTextviews);
         cpListView.setAdapter(adapter);
