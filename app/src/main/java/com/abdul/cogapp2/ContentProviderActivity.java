@@ -1,6 +1,7 @@
 package com.abdul.cogapp2;
 
 import android.content.ContentResolver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ public class ContentProviderActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver(); //fetch the content provider
         Uri uriSms = Uri.parse("content://sms/inbox");
 
-        
+        Cursor dataCursor = contentResolver.query(uriSms,null,null,null,null);
 
 
     }
