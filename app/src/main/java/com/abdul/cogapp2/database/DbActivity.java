@@ -111,8 +111,8 @@ public  static String TAG = DbActivity.class.getSimpleName();
 
     private void fireCommit() {
         Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
+        user.put("first", etTitle.getText().toString());
+        user.put("last", etNotes.getText().toString());
         user.put("born", 1815);
 
 // Add a new document with a generated ID
